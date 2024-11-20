@@ -8,7 +8,7 @@ load_dotenv()
 class Config:
     #chroma 
     CHROMADB_DIRECTORY = "VECTOR_DB"
-    MANUAL_COLLECTION = "PDF_COLLECTION"
+    CHROMA_COLLECTION = "ISO"
     CHROMA_COLLETION_METADATA = {"hnsw:space": "cosine"}
 
     LLM_API_KEY_ENV = os.getenv("GROQ_API_KEY") 
@@ -21,6 +21,8 @@ class Config:
          ("human", 
           "This is the user's prompts:\n\n {prompt}")
     ]
+
+    PDF_FOLDER = "kumpulan_pdf"
 
 @classmethod
 def get_prompt_template(cls):
