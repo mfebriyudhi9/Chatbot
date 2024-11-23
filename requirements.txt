@@ -10,3 +10,6 @@ flask==3.1.0
 Flask_Cors==5.0.0
 
 python-dotenv
+
+pytesseract==0.3.13
+mysql-connector-python==9.1.0

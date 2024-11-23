@@ -6,7 +6,12 @@ import os
 import sys
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+
 from config import Config
+from database import DataBase
+
+db = DataBase()
+db.creat_table_if_not_exists()
 
 class LLMRAG:
     def __init__(self):
@@ -23,12 +28,13 @@ class LLMRAG:
 
     def process_prompt(self, prompt, uuid):
         formatted_prompt = self.prompt_template.format(input=prompt)
-        chat_history = self.retrieve_chat_history(uuid)
+        chat_history = db.retrieve_chat_history(uuid, 10)
 
         output = self.conversation_retrieval_chain({"prompt":prompt, 'chat_history': chat_history})
         answer = output['result']
         source_documents = output['source_documents']
 
         # add function to save to db
+        db.save_to_database(prompt, answer, uuid)
 
         return answer, source_documents
