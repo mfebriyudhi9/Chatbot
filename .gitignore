@@ -22,7 +22,7 @@ iseng.ipynb
 .env
 
 # Vector Database
-VECTOR_DB/
+VECTOR_DB
 
 # PDFs or other uploaded/generated files
 kumpulan_pdf/
