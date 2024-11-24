@@ -1,17 +1,19 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify, session
+from flask import Flask, render_template, request, jsonify, session
 from flask_cors import CORS
 
-from chatbot import DocsMasterProcess, LLMRAG
+from chatbot import DocsMasterProcess, bot_answer
 from config import Config
 
 import os
 import uuid
 
 app = Flask(__name__)
+app.secret_key = Config.SECRET_KEY  # Necessary for session management
+
 CORS(app)
 
 processor = DocsMasterProcess()
-llm_bot = LLMRAG()
+llm_bot = bot_answer.LLMRAG()
 
 if not os.path.exists(Config.PDF_FOLDER):
     os.makedirs(Config.PDF_FOLDER)
@@ -92,7 +94,9 @@ def answer():
         print()
         print(source_doc)
 
-        return jsonify({"response": response, "source_doc": source_doc})
+        source = list({f"{Config.PDF_FOLDER}/{src.metadata['source']}" for src in source_doc})
+
+        return jsonify({"response": response, "source_doc": source})
     except Exception as e:
         print(f"Error processing prompt: {e}")
         return jsonify({"error": "An error occurred while processing the prompt."}), 500

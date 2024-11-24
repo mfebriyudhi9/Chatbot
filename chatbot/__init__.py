@@ -5,3 +5,5 @@ from .parent.document_operation import DocumentOperation
 
 from .bot_answer import LLMRAG
 from .master_docs import DocsMasterProcess
+
+from config.config import Config

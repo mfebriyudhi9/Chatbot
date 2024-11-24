@@ -1,0 +1,28 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment directories
+env/
+venv/
+crud-chatbot-env/
+
+# Python-specific
+*.log
+*.pot
+*.pyc
+*.pyo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+iseng.ipynb
+
+# Environment variables
+.env
+
+# Vector Database
+VECTOR_DB/
+
+# PDFs or other uploaded/generated files
+kumpulan_pdf/

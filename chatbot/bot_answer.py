@@ -1,30 +1,36 @@
 from langchain.chains import RetrievalQA
 from langchain.embeddings import HuggingFaceEmbeddings
-
-import os
-import sys
-
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from langchain_chroma import Chroma
+import chromadb
 
 from config import Config
 from database import DataBase
 
 db = DataBase()
-db.creat_table_if_not_exists()
+db.create_table_if_not_exists()
+print('table has been created')
+
 
 class LLMRAG:
     def __init__(self):
         try:
             self.llm = Config.get_llm()
             self.prompt_template = Config.get_prompt_template()
-            self.vector_db = Config.get_vector_db()
+            self.vector_db = Chroma(
+                client=chromadb.PersistentClient(path=Config.CHROMADB_DIRECTORY),
+                collection_name=Config.CHROMA_COLLECTION,
+                embedding_function=HuggingFaceEmbeddings(model_name=Config.EMBEDDING_MODEL_NAME)
+            )
 
-            self.conversation_retrieval_chain = RetrievalQA(
+            self.conversation_retrieval_chain = RetrievalQA.from_chain_type(
                 llm=self.llm,
                 chain_type="stuff",
                 retriever=self.vector_db.as_retriever(search_mmr='mmr', search_kwargs={"k": 2}),
-                return_source_documents=True
+                return_source_documents=True,
+                input_key="prompt"
             )
+
+            print('retrieval chain telah dibuat')
         except Exception as e:
             print(f"Error initializing LLMRAG: {e}")
             self.conversation_retrieval_chain = None
@@ -36,10 +42,10 @@ class LLMRAG:
 
         try:
             # Format the prompt
-            formatted_prompt = self.prompt_template.format(input=prompt)
+            formatted_prompt = self.prompt_template.format(prompt=prompt)
         except Exception as e:
             print(f"Error formatting the prompt: {e}")
-            return "Error processing the request. Please try again.", []
+            return "Error formatting the prompt. Please try again.", []
 
         try:
             # Retrieve chat history from the database

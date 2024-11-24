@@ -1,4 +1,4 @@
-from crud import DocumentAdder, DocumentUpdate, DeleteDocument
+from chatbot.crud import DocumentAdder, DocumentUpdate, DeleteDocument
 from config import Config
 
 class DocsMasterProcess:

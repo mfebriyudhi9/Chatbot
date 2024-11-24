@@ -1,0 +1,23 @@
+# Exclude Python cache and compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Exclude virtual environment directories
+env/
+venv/
+crud-chatbot-env/
+
+# Exclude Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+iseng.ipynb
+
+# Exclude environment files
+.env
+
+# Exclude PDF and uploaded/generated files
+kumpulan_pdf/
+
+
+# Exclude unnecessary documentation files
+README.md
