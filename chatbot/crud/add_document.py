@@ -44,8 +44,10 @@ class DocumentAdder(DocumentOperation):
             print(f"Error adding documents to vector database: {e}")
             return False
 
+    # Getter
     def get_vector_db(self):
         if not self._vector_db:
             print("Error: Vector database is not initialized.")
             return None
         return self._vector_db
+    

@@ -25,7 +25,7 @@ class LLMRAG:
             self.conversation_retrieval_chain = RetrievalQA.from_chain_type(
                 llm=self.llm,
                 chain_type="stuff",
-                retriever=self.vector_db.as_retriever(search_mmr='mmr', search_kwargs={"k": 2}),
+                retriever=self.vector_db.as_retriever(search_mmr='mmr', search_kwargs={"k": Config.TOTAL_K_RETURNED_DOCS}),
                 return_source_documents=True,
                 input_key="prompt"
             )
@@ -49,7 +49,7 @@ class LLMRAG:
 
         try:
             # Retrieve chat history from the database
-            chat_history = db.retrieve_chat_history(uuid, 10)
+            chat_history = db.retrieve_chat_history(uuid, Config.LLM_CONTEXT_LIMIT)
         except Exception as e:
             print(f"Error retrieving chat history: {e}")
             chat_history = ""
