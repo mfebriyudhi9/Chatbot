@@ -36,11 +36,11 @@ def index():
 def add_doc():
     try:
         pdf_file = request.files["pdf"]
-        pdf_file.save(pdf_file.filename)
+        pdf_file.save(os.path.join(Config.PDF_FOLDER, pdf_file.filename))
 
-        file_path = os.path.join(Config.PDF_FOLDER, pdf_file.filename)
+        file_name = pdf_file.filename
 
-        processor.add(file_path)
+        processor.add(file_name)
         print("Document added to chromadb successfully!")
 
         return jsonify({"message": "Document added to chromadb successfully!"})
