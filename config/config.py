@@ -9,7 +9,9 @@ class Config:
     #chroma 
     CHROMADB_DIRECTORY = "VECTOR_DB"
     CHROMA_COLLECTION = "ISO"
-    CHROMA_COLLETION_METADATA = {"hnsw:space": "cosine"}
+    # CHROMA_COLLETION_METADATA = {"hnsw:space": "cosine"}
+    TOTAL_K_RETURNED_DOCS = 2
+    LLM_CONTEXT_LIMIT = 10
 
     LLM_API_KEY_ENV = os.getenv("GROQ_API_KEY") 
     LLM_MODEL_NAME = "Llama-3.1-70b-Versatile"
@@ -46,6 +48,5 @@ class Config:
         except Exception as e:
             print(f"Error initializing model : {str(e)}")
             raise
-
 
 
