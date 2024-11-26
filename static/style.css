@@ -1,0 +1,114 @@
+/* General Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.main-container {
+    max-width: 600px;
+    width: 90%;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+header {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+header p {
+    margin: 5px 0 0;
+    font-size: 16px;
+}
+
+main {
+    padding: 20px;
+}
+
+.chat-container, .form-section {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.input-box {
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+.response-area {
+    margin-top: 20px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    padding: 15px;
+    border-radius: 5px;
+    min-height: 100px;
+    text-align: left;
+}
+
+.spinner {
+    margin: 20px auto;
+    border: 4px solid rgba(0, 0, 0, 0.1);
+    border-left-color: #007bff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.message {
+    margin: 20px 0;
+    padding: 10px;
+    background-color: #e9ecef;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+}
+
+footer {
+    text-align: center;
+    background-color: #f1f1f1;
+    padding: 10px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}

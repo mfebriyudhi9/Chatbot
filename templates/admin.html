@@ -3,9 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="main-container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <p>Manage your documents efficiently.</p>
+        </header>
+        <main>
+            <form id="uploadForm" class="form-section">
+                <h2>Add Document</h2>
+                <input id="pdfFile" type="file" name="file" accept=".pdf" class="input-box">
+                <button type="submit" class="button">Add Document</button>
+            </form>
+
+            <form id="deleteForm" class="form-section">
+                <h2>Delete Document</h2>
+                <input id="fileToDelete" type="text" name="file_name" placeholder="Enter file name" class="input-box">
+                <button type="submit" class="button">Delete Document</button>
+            </form>
+
+            <form id="updateForm" class="form-section">
+                <h2>Update Document</h2>
+                <input id="pdfUpdateFile" type="file" name="file" accept=".pdf" class="input-box">
+                <button type="submit" class="button">Update Document</button>
+            </form>
+
+            <div id="message" class="message"></div>
+            <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+        </main>
+        <footer>
+            <p>&copy; QHSE</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

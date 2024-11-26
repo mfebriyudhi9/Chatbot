@@ -3,9 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ISO CHATBOT</title>
+    <title>Chatbot Interface</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="main-container">
+        <header>
+            <h1>Chatbot ISO</h1>
+            <p>Ask questions, and let our bot assist you!</p>
+        </header>
+        <main>
+            <div class="chat-container">
+                <input type="text" id="userPrompt" placeholder="Type your question here..." class="input-box">
+                <button id="askButton" class="button">Ask</button>
+            </div>
+            <div id="responseArea" class="response-area"></div>
+            <div id="loadingSpinner" class="spinner" style="display: none;"></div>
+        </main>
+        <footer>
+            <p>&copy; QHSE</p>
+        </footer>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>
