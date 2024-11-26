@@ -65,7 +65,7 @@ def delete_doc():
         file_name = request.form["file_name"]
         file_path = os.path.join(Config.PDF_FOLDER, file_name)
 
-        processor.delete(file_path)
+        processor.delete(file_name)
         os.remove(file_path)
 
         return jsonify({"message": "Document deleted from chromadb successfully!"})
@@ -82,9 +82,9 @@ def update_doc():
         pdf_file = request.files["pdf"]
         pdf_file.save(pdf_file.filename)
 
-        file_path = os.path.join(Config.PDF_FOLDER, pdf_file.filename)
+        # file_path = os.path.join(Config.PDF_FOLDER, pdf_file.filename)
 
-        processor.update(file_path)
+        processor.update(pdf_file.filename)
         print("Document updated in chromadb successfully!")
 
         return jsonify({"message": "Document updated in chromadb successfully!"})
