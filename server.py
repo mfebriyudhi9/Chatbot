@@ -32,6 +32,14 @@ def index():
         print(f"Error rendering index: {e}")
         return jsonify({"error": "An error occurred while loading the index page."}), 500
 
+@app.route("/admin")
+def admin():
+    try:
+        return render_template("admin.html")
+    except Exception as e:
+        print(f"Error rendering admin: {e}")
+        return jsonify({"error": "An error occurred while loading the admin page."}), 500
+
 @app.route("/add-doc", methods=["POST"])
 def add_doc():
     try:
@@ -39,7 +47,6 @@ def add_doc():
         pdf_file.save(os.path.join(Config.PDF_FOLDER, pdf_file.filename))
 
         file_name = pdf_file.filename
-
         processor.add(file_name)
         print("Document added to chromadb successfully!")
 
@@ -54,7 +61,7 @@ def delete_doc():
         file_name = request.form["file_name"]
         file_path = os.path.join(Config.PDF_FOLDER, file_name)
 
-        processor.delete(file_path)
+        processor.delete(file_name)
         os.remove(file_path)
 
         return jsonify({"message": "Document deleted from chromadb successfully!"})
@@ -70,9 +77,9 @@ def update_doc():
         pdf_file = request.files["pdf"]
         pdf_file.save(pdf_file.filename)
 
-        file_path = os.path.join(Config.PDF_FOLDER, pdf_file.filename)
+        #file_path = os.path.join(Config.PDF_FOLDER, pdf_file.filename)
 
-        processor.update(file_path)
+        processor.update(pdf_file.filename)
         print("Document updated in chromadb successfully!")
 
         return jsonify({"message": "Document updated in chromadb successfully!"})

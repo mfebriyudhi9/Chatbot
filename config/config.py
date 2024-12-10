@@ -9,17 +9,17 @@ class Config:
     #chroma 
     CHROMADB_DIRECTORY = "VECTOR_DB"
     CHROMA_COLLECTION = "ISO"
-    # CHROMA_COLLETION_METADATA = {"hnsw:space": "cosine"}
+    CHROMA_COLLETION_METADATA = {"hnsw:space": "cosine"}
     TOTAL_K_RETURNED_DOCS = 2
     LLM_CONTEXT_LIMIT = 10
 
     LLM_API_KEY_ENV = os.getenv("GROQ_API_KEY") 
     LLM_MODEL_NAME = "Llama-3.1-70b-Versatile"
-    EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L12-v2"
+    EMBEDDING_MODEL_NAME = "avsolatorio/GIST-small-Embedding-v0"
 
     PROMPT_TAMPLATE_MASSAGES = [
         ("system",
-         "You are an assistant that are very proficient at answering user prompt regarding health, safety, environment (HSE) issues. also it is mandatory to give response in indonesian language, otherwise i'll punish you"),
+         "You are an assistant that are very proficient at answering user prompt. also it is mandatory to give response in indonesian language, otherwise i'll punish you"),
          ("human", 
           "This is the user's prompts:\n\n {prompt}")
     ]
